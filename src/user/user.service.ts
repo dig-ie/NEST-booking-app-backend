@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -39,7 +35,7 @@ export class UserService {
   // Método para criar um novo usuário
   async create(createUserDto: CreateUserDto) {
     const newUser = this.userRepository.create(createUserDto);
-    const savedUser = await this.userRepository.save(newUser);
+    await this.userRepository.save(newUser);
     // return this.excludePassword(savedUser); // Exclui a senha do usuário antes de retornar
   }
 
